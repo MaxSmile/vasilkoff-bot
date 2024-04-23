@@ -1,0 +1,29 @@
+name: Deploy to OCI Instance
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: SSH and Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.OCI_HOST }}
+        username: ${{ secrets.OCI_USERNAME }}
+        key: ${{ secrets.OCI_SSH_KEY }}
+        script: |
+            echo "Changing directory to ~/vasilkoff-bot"
+            cd ~/vasilkoff-bot
+            echo "Checking npm version"
+            npm --version
+            echo "Checking Node version"
+            node --version
+            echo "Installing dependencies"
+            npm ci
+            echo "Building the project"
+            npm run build
