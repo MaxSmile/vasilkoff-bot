@@ -19,6 +19,7 @@ jobs:
         script: |
             echo "Changing directory to ~/vasilkoff-bot"
             cd ~/vasilkoff-bot
+            git pull
             echo "Sourcing NVM"
             source ~/.nvm/nvm.sh
             echo "Checking npm version"
