@@ -1,6 +1,6 @@
 module.exports = {
     apps: [{
-      name: 'nextjs-app',
+      name: 'vasilkoff-bot',
       script: 'npm',
       args: 'start',
       watch: true,
