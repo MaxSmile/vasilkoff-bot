@@ -6,15 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  color-scheme: light only;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -30,4 +24,42 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+section.test-section {
+  @apply max-w-md mx-auto p-6 my-6 bg-white rounded-md shadow-md;
+}
+
+section.test-section label {
+  @apply flex justify-between my-2;
+}
+
+section.test-section input, section.test-section textarea {
+  @apply border border-gray-300 mx-2 p-1 rounded-md; 
+}
+
+
+section.test-section textarea {
+  @apply block w-[300px] h-[200px] p-2.5; 
+}
+
+section.test-section input {
+  @apply  w-[300px];
+}
+
+.contact-submit {
+  @apply bg-blue-500 text-white py-2 px-8 rounded-md mx-auto my-4;
+}
+
+section.test-section button {
+  @apply  mx-[50%] -translate-x-[50%];
+}
+
+section.test-section h1,
+section.test-section h2,
+section.test-section h3,
+section.test-section h4,
+section.test-section h5,
+section.test-section h6 {
+  @apply font-bold;
 }

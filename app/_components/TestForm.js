@@ -36,7 +36,7 @@ export default function TestForm() {
             if (response.ok) {
                 setMessage('Form submitted successfully! Thank you.');
                 setError('');
-                setFormData({ name: 'Test Name', email: 'test@mail.com', message: "It's a test" }); 
+                setFormData({ name: '', email: '', message: "" }); 
             } else {
                 throw new Error(data.message || 'Something went wrong');
             }
@@ -48,7 +48,7 @@ export default function TestForm() {
     };
 
     return (
-        <section>
+        <section className="test-section">
             <h1>Test Form</h1>
             <form onSubmit={handleSubmit} method='POST'>
                 <label>
@@ -60,7 +60,6 @@ export default function TestForm() {
                         onChange={handleInputChange}
                     />
                 </label>
-                <br/>
                 <label>
                     Email:
                     <input
@@ -70,7 +69,6 @@ export default function TestForm() {
                         onChange={handleInputChange}
                     />
                 </label>
-                <br/>
                 <label>
                     Message:
                     <textarea
@@ -79,8 +77,7 @@ export default function TestForm() {
                         onChange={handleInputChange}
                     />
                 </label>
-                <br/>
-                <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Submit</button>
+                <button type="submit" className="contact-submit">Submit</button>
             </form>
             {message && <div style={{ color: 'green', marginTop: '10px' }}>{message}</div>}
             {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
