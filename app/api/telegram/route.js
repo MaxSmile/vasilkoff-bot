@@ -37,5 +37,5 @@ export async function GET(request) {
       method: 'GET',
 
     })
-  return Response.json({message:'Success! '+request.url,response}, { status: 200 });
+  return Response.json({message:'Success! '+request.url, response}, { status: 200 });
 }

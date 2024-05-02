@@ -32,3 +32,4 @@ jobs:
             npm run build
             sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
             sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+            pm2 restart vasilkoff-bot
