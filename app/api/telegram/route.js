@@ -17,7 +17,7 @@ bot.on('text', (ctx) => {
 });
 
 // Export the POST function to handle incoming webhook payloads
-module.exports = async function POST(request) {
+export async function POST(request) {
   try {
     const body = await request.text();
     // Process the webhook payload
@@ -29,3 +29,13 @@ module.exports = async function POST(request) {
     return new Response(`Webhook error: ${error.message}`, { status: 400 });
   }
 };
+
+export async function GET(request) {
+  console.log('request.url', request.url);
+  const response = await fetch('https://api.telegram.org/bot6362952851:AAE4bI3KADUkVo-n40Pd7CcpqIpeIOWUf_w/setWebhook?url=https://bot.smartai.top/api/telegram/',
+    {
+      method: 'GET',
+
+    })
+  return Response.json({message:'Success! '+request.url,response}, { status: 200 });
+}
