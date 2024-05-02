@@ -12,7 +12,7 @@ export default function TestForm() {
         const formObject = {};
         formData.forEach((value, key) => { formObject[key] = value; });
 
-        const url = `http://localhost:3000/api/form`;
+        const url = `/api/form`;
 
         try {
             const response = await fetch(url, {
