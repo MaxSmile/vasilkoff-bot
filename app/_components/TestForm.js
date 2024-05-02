@@ -1,25 +1,17 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 export default function TestForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
+    const formRef = useRef(null);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData(formRef.current);
+        const formObject = {};
+        formData.forEach((value, key) => { formObject[key] = value; });
+
         const url = `http://localhost:3000/api/form`;
 
         try {
@@ -28,15 +20,15 @@ export default function TestForm() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formObject)
             });
 
             const data = await response.json();
-
             if (response.ok) {
                 setMessage('Form submitted successfully! Thank you.');
                 setError('');
-                setFormData({ name: '', email: '', message: "" }); 
+                // Clear the form fields if needed
+                formRef.current.reset();
             } else {
                 throw new Error(data.message || 'Something went wrong');
             }
@@ -50,33 +42,28 @@ export default function TestForm() {
     return (
         <section className="test-section">
             <h1>Test Form</h1>
-            <form onSubmit={handleSubmit} method='POST'>
+            <form ref={formRef} onSubmit={handleSubmit} method='POST'>
                 <label>
                     Name:
                     <input
                         type="text"
                         name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
                     />
                 </label>
                 <label>
                     Email:
                     <input
                         type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
+                        name="clientID"
                     />
                 </label>
                 <label>
                     Message:
                     <textarea
                         name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
                     />
                 </label>
+                <input type="hidden" name="chatID" value='test1' />
                 <button type="submit" className="contact-submit">Submit</button>
             </form>
             {message && <div style={{ color: 'green', marginTop: '10px' }}>{message}</div>}
