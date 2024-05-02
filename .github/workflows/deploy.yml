@@ -30,3 +30,5 @@ jobs:
             npm ci
             echo "Building the project"
             npm run build
+            sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+            sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
