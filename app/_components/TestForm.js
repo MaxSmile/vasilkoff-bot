@@ -28,7 +28,7 @@ export default function TestForm() {
                 setMessage('Form submitted successfully! Thank you.');
                 setError('');
                 // Clear the form fields if needed
-                formRef.current.reset();
+                //formRef.current.reset();
             } else {
                 throw new Error(data.message || 'Something went wrong');
             }
