@@ -3,7 +3,8 @@ module.exports = {
       name: 'vasilkoff-bot',
       script: 'npm',
       args: 'start',
-      watch: true,
+      autorestart: true,
+      watch: false,
       env: {
         NODE_ENV: 'production',
         PORT: 3000
